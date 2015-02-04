@@ -1,22 +1,33 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Install and configure firewall on RHEL based systems. 
+The role abstracts the need to install and configure a firewall. Currently only iptables and firewalld are supported.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Ansible 1.4
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
 
-Dependencies
+  firewall_package_state: present
+  firewall_service_state: running
+  firewall_service_enabled: true
+  firewall_config_services:
+  - name: ssh
+    state: enabled
+  firewall_config_ports:
+  - port: 123
+    protocol: udp
+    state: enable
+
+dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+No dependencies yet.
 
 Example Playbook
 ----------------
@@ -25,7 +36,7 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: firewall }
 
 License
 -------
@@ -35,4 +46,4 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Thomas Krahn
