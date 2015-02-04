@@ -1,0 +1,6 @@
+---
+- name: Ensure that service is running and configured to start on system boot
+  service:
+    name: '{{ firewall_service_name }}'
+    state: '{{ firewall_service_state }}'
+    enabled: '{{ firewall_service_enabled }}'

@@ -1,0 +1,22 @@
+---
+- name: Setup firewall roles using iptables
+  lineinfile:
+    dest: /etc/sysconfig/iptables
+    state: present
+    regexp: ^.*INPUT.*ESTABLISHED,RELATED.*ACCEPT
+    insertafter: ^:OUTPUT
+    line: -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+    backup: true
+  notify: restart iptables
+
+- name: Configure ports to be accepted
+  lineinfile:
+    dest: '{{ firewall_config_file }}'
+    state: present
+    regexp: ^.*INPUT.*tcp.*{{ item.1.port }}.*ACCEPT
+    insertafter: ^.*INPUT.*ESTABLISHED,RELATED.*ACCEPT
+    line: -A INPUT -m state --state NEW -m {{ item.protocol }} -p {{ item.protocol }} --dport {{ item.port }} -j ACCEPT
+    backup: true
+  when: item.state == "enabled"
+  with_items: firewall_config_ports
+  notify: restart iptables

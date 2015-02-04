@@ -1,0 +1,6 @@
+---
+- name: Install firewall
+  sudo: true
+  yum:
+    name: '{{ firewall_package_name }}'
+    state: '{{ firewall_package_state }}'

@@ -1,0 +1,4 @@
+---
+firewall_package_name: iptables
+firewall_service_name: iptables
+firewall_config_file: /etc/sysconfig/iptables

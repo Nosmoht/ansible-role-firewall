@@ -1,0 +1,17 @@
+---
+galaxy_info:
+  author: Thomas Krahn
+  description: Install and configure firewall on RHEL based systems
+  company: null
+  license: null
+  min_ansible_version: 1.4
+  platforms:
+  - name: EL
+    versions:
+    - all
+    - 5
+    - 6
+    - 7
+  categories:
+  - system
+dependencies: []

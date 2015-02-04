@@ -1,0 +1,17 @@
+---
+- name: Configure firewall services
+  sudo: true
+  firewalld:
+    service: '{{ item.name }}'
+    state: '{{ item.state }}'
+    permanent: true
+  with_items: firewall_config_services
+  notify: reload firewall
+
+- name: Configure firewall ports
+  sudo: yes
+  firewalld:
+    port: '{{ item.port }}/{{ item.protocol }}'
+    state: '{{ item.state }}'
+    permanent: true
+  with_items: firewall_config_ports
