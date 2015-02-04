@@ -13,16 +13,16 @@ Role Variables
 --------------
 
 
-  firewall_package_state: present
-  firewall_service_state: running
-  firewall_service_enabled: true
-  firewall_config_services:
-  - name: ssh
-    state: enabled
-  firewall_config_ports:
-  - port: 123
-    protocol: udp
-    state: enable
+    firewall_package_state: present
+    firewall_service_state: running
+    firewall_service_enabled: true
+    firewall_config_services:
+    - name: ssh
+      state: enabled
+    firewall_config_ports:
+    - port: 123
+      protocol: udp
+      state: enable
 
 dependencies
 ------------
