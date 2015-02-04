@@ -3,3 +3,8 @@
   service:
     name: '{{ firewall_service_name }}'
     state: reloaded
+
+- name: restart firewall
+  service:
+    name: '{{ firewall_service_name }}'
+    state: restarted
